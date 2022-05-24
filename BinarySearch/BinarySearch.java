@@ -20,3 +20,18 @@ public class BinarySearch {
     }
     
 }
+
+// Second approach using binary search
+// set lower bound
+// set upper bound
+// while target is not found return -1
+// set midpoint (low + (high - low) /2)
+/*  if A[midPoint] < x
+set lowerBound = midPoint + 1
+         
+if A[midPoint] > x
+   set upperBound = midPoint - 1 
+
+if A[midPoint] = x 
+   EXIT: x found at location midPoint
+**/
