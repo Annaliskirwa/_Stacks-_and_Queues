@@ -32,3 +32,31 @@ class Solution {
         return -1;
     }
 }
+
+
+//redefined the approach to use long values and to get the values that dont give the exact root to fall under high -1
+
+class Solution {
+     public int mySqrt(int x) {
+        long high = 0, low = x, mid = 0;
+        if(x < 2) {
+            return x;
+        }
+        while(high <= low) {
+            mid = (high + low) / 2;
+            if((mid * mid) == x) {
+                return (int)mid;
+            }
+            else if((mid * mid) < x) {
+                high = mid + 1;
+            } 
+            else if((mid * mid) > x) {
+                low = mid - 1;
+            }
+        }
+        
+        return (int)high-1;
+    }
+}
+
+//passes all the tets cases
