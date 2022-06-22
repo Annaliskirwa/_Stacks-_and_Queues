@@ -39,3 +39,34 @@ public class Solution extends GuessGame {
         
     }
 }
+
+
+/**
+Using a binary search, better time complexity
+init high low mid and a temp for checking the guessAPI.
+if temp after checking the guess is 0, return the mid, if less adjust the high to be mid -1, if more adjust the low to be mid + 1
+*/
+
+public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+        int high = n; 
+        int low = 0;
+        int mid;
+        int temp;
+        while (high >= low){
+            mid = low + (high - low) / 2;
+            temp = guess(mid);
+            if (temp == 0){
+                return mid;
+            }
+            else if (temp < 0){
+                high  = mid -1;
+            }
+            else{
+                low = mid + 1;
+            }
+        }
+        return -1;
+        
+    }
+}
