@@ -53,3 +53,74 @@ class MyHashSet {
  */
 
 
+
+//  Second implementation of hashset
+// Better space, time can be looked into using rehashing techs
+class MyHashSet {
+    private final int MAX_VALUE  = 1000000;
+    private final int ARRAY_SIZE = 100;
+//     List of the linked lists
+    private List<List<Integer>> parentList;
+
+    public MyHashSet() {
+        parentList = new ArrayList<>(ARRAY_SIZE);
+        for (int i = 0; i < ARRAY_SIZE; i++){
+//             initiliaze the array list with a bunch of nulls
+            parentList.add(null);
+        }
+    }
+    
+    public void add(int key) {
+//         modulo to map to one of the buckets
+        int index = key % ARRAY_SIZE;
+//         get the child list of the bucket where the key will go
+        List<Integer> childList = parentList.get(index);
+        if (childList == null){
+            // if no one is in the list before, create a new linked list
+            List<Integer> list =  new LinkedList<>();
+            list.add(key);
+            parentList.set(index, list);
+        }
+        else{
+//             add only if the is not there 
+            if (!childList.contains(key)){
+                childList.add(key);
+            }
+        }
+    }
+    
+    public void remove(int key) {
+//         find the bucket
+        int index = key % ARRAY_SIZE;
+        List<Integer> childList = parentList.get(index);
+        if (childList != null){
+//             removing the key from the list, removing the object
+            childList.remove(Integer.valueOf(key));
+        }
+    }
+    
+    public boolean contains(int key) {
+//         find the bucket
+        int index = key % ARRAY_SIZE;
+        List<Integer> childList = parentList.get(index);
+        return childList != null && childList.contains(key);
+    }
+}
+
+/**
+Time and space depends on the table size, no of buckets, range of inputs
+Load factor and rehashing
+time:rehashing
+
+
+*/
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet obj = new MyHashSet();
+ * obj.add(key);
+ * obj.remove(key);
+ * boolean param_3 = obj.contains(key);
+ */
+
+
